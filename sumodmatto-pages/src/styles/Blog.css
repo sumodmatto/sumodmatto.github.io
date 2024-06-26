@@ -1,0 +1,17 @@
+.blog {
+  padding: 20px;
+}
+
+.post {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.post h3 {
+  margin: 0;
+  color: #555;
+}
+
+.post p {
+  color: #666;
+}

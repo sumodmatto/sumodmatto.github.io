@@ -1,0 +1,38 @@
+# ビルドファイルやコンパイル結果を無視する
+*.o
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# パッケージングやデプロイに関連するファイルを無視する
+node_modules/
+vendor/
+dist/
+build/
+*.zip
+*.tar.gz
+
+# ログファイルやキャッシュファイルを無視する
+*.log
+*.cache
+
+# 一時ファイルやバックアップファイルを無視する
+*.tmp
+*.bak
+*.swp
+
+# IDEやエディタに関連するファイルを無視する
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# プロジェクトの設定ファイルを無視する
+.env
+config.ini
+
+# その他の一般的な無視対象ファイルやディレクトリ
+.DS_Store
+Thumbs.db
