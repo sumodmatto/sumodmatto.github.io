@@ -12,7 +12,7 @@
     />
   </head>
   <body>
-    <div data-include="../common/header.html"></div>
+    <app-header></app-header>
     <main>
       <div class="container">
         <h1>QR Code Generator</h1>
@@ -47,13 +47,15 @@
         >.
       </p>
     </footer>
+    <app-footer></app-footer>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
       integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="../js/common.js"></script>
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
     <script src="../js/qrcode.js"></script>
   </body>
 </html>

@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App List</title>
     <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/app-list.css" />
   </head>
   <body>
-    <div data-include="../common/header.html"></div>
+    <app-header></app-header>
     <main>
-      <h1>App List</h1>
-      <ul class="app-list">
-        <li><a href="calculator.html">Calculator</a></li>
-        <li><a href="qrcode.html">QR Code Generator</a></li>
-        <li><a href="notepad.html">Notepad</a></li>
-      </ul>
+      <app-list></app-list>
     </main>
-    <div data-include="../common/footer.html"></div>
-    <script src="../js/common.js"></script>
+    <app-footer></app-footer>
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../components/app-list.js"></script>
   </body>
 </html>
