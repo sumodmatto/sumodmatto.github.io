@@ -31,6 +31,13 @@ app-header nav ul li a {
 
 main {
   padding: 1em;
+  display: flex;
+  justify-content: center; /* 中央に配置 */
+  align-items: center; /* 中央に配置 */
+  flex-direction: column;
+  min-height: 80vh;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* フッターのスタイル */
@@ -52,15 +59,18 @@ app-footer a:hover {
   text-decoration: underline;
 }
 
-/* コンテナのスタイル */
+/* 共通のコンテナのスタイル */
 .container {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 90%;
-  max-width: 600px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* 最大幅を調整 */
 }
 
 /* フォームのスタイル */
@@ -102,6 +112,8 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   border: none;
+  align-self: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
@@ -131,4 +143,8 @@ button:hover {
 
 .app-list li a:hover {
   background-color: #ddd;
+}
+
+notepad-app {
+  width: 60%;
 }

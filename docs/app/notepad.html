@@ -14,25 +14,11 @@
   <body>
     <app-header></app-header>
     <main>
-      <div class="container">
-        <h1>Notepad</h1>
-        <form id="notepad-form">
-          <textarea
-            id="note-content"
-            placeholder="Type your note here..."
-          ></textarea>
-          <button type="submit">Save Note</button>
-        </form>
-        <div id="saved-notes">
-          <h2>Saved Notes</h2>
-          <button id="clear-all-notes">Clear All Notes</button>
-          <ul id="notes-list"></ul>
-        </div>
-      </div>
+      <notepad-app></notepad-app>
     </main>
     <app-footer></app-footer>
     <script src="../components/header.js"></script>
     <script src="../components/footer.js"></script>
-    <script src="../js/notepad.js"></script>
+    <script src="../components/notepad.js"></script>
   </body>
 </html>
