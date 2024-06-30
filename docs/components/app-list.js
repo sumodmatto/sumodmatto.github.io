@@ -6,6 +6,7 @@ class AppList extends HTMLElement {
           <li><a href="calculator.html">Calculator</a></li>
           <li><a href="qrcode.html">QR Code Generator</a></li>
           <li><a href="notepad.html">Notepad</a></li>
+          <li><a href="kanban.html">Kanban</a></li>
         </ul>
       `;
   }
