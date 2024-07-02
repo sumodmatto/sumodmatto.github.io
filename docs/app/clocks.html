@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Clocks</title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/clocks.css" />
+  </head>
+  <body>
+    <app-header></app-header>
+    <main>
+      <div class="controls">
+        <button id="toggle-display">Toggle Display</button>
+      </div>
+      <div class="clocks-container">
+        <div class="clock" data-timezone="UTC" data-city="UTC"></div>
+        <div
+          class="clock"
+          data-timezone="America/New_York"
+          data-city="New York"
+        ></div>
+        <div
+          class="clock"
+          data-timezone="Europe/London"
+          data-city="London"
+        ></div>
+        <div class="clock" data-timezone="Asia/Tokyo" data-city="Tokyo"></div>
+        <div
+          class="clock"
+          data-timezone="Australia/Sydney"
+          data-city="Sydney"
+        ></div>
+      </div>
+    </main>
+    <app-footer></app-footer>
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../components/clocks.js"></script>
+  </body>
+</html>

@@ -2,7 +2,7 @@ class AppFooter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
         <footer>
-          <p>&copy; 2024 Your Company. All rights reserved.</p>
+          <p>&copy; 2024 Sumodmatto. All rights reserved.</p>
         </footer>
       `;
   }
