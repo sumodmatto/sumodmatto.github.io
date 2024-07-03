@@ -7,7 +7,8 @@ class AppList extends HTMLElement {
           <li><a href="qrcode.html">QR Code Generator</a></li>
           <li><a href="notepad.html">Notepad</a></li>
           <li><a href="kanban.html">Kanban</a></li>
-          <li><a href="clocks.html">Kanban</a></li>
+          <li><a href="clocks.html">Clocks</a></li>
+          <li><a href="mermaid.html">Mermaid Renderer</a></li>
         </ul>
       `;
   }

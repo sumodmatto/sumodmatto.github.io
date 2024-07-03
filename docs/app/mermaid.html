@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Mermaid Renderer</title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/mermaid.css" />
+  </head>
+  <body>
+    <app-header></app-header>
+    <main>
+      <div class="container">
+        <h1>Live Mermaid Renderer</h1>
+        <textarea
+          id="mermaid-input"
+          placeholder="Enter your Mermaid code here..."
+        ></textarea>
+        <button id="render-button">Render Mermaid</button>
+        <div id="mermaid-output"></div>
+      </div>
+    </main>
+    <app-footer></app-footer>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const mermaidInput = document.getElementById("mermaid-input");
+        const mermaidOutput = document.getElementById("mermaid-output");
+        const renderButton = document.getElementById("render-button");
+
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: "default",
+        });
+
+        renderButton.addEventListener("click", () => {
+          const code = mermaidInput.value;
+          renderMermaidDiagram(code);
+        });
+
+        function renderMermaidDiagram(code) {
+          mermaidOutput.innerHTML = ""; // Clear previous content
+          mermaid
+            .render("graphDiv", code)
+            .then(({ svg }) => {
+              mermaidOutput.innerHTML = svg;
+            })
+            .catch((error) => {
+              mermaidOutput.innerHTML = `<div class="error">${error.message}</div>`;
+            });
+        }
+
+        // Render an initial diagram
+        const initialCode = `erDiagram
+          SystemConfig {
+            int id PK
+            varchar key UK
+            varchar value
+            text note
+            int updatedEmployeeId
+            datetime createdAt
+            datetime updatedAt
+          }`;
+        mermaidInput.value = initialCode;
+        renderMermaidDiagram(initialCode);
+      });
+    </script>
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/common.js"></script>
+  </body>
+</html>

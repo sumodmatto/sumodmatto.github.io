@@ -1,0 +1,65 @@
+/* メインコンテナのスタイル */
+.container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* 最大幅を調整 */
+}
+
+/* テキストエリアのスタイル */
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  resize: none;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 出力エリアのスタイル */
+#mermaid-output {
+  width: 100%;
+  overflow: auto;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+/* ボタンのスタイル */
+button {
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+  align-self: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+/* Mermaidのカスタムスタイル */
+.mermaid {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
