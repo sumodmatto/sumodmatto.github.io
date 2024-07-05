@@ -5,34 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog</title>
     <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/blog.css" />
   </head>
   <body>
     <app-header></app-header>
     <main>
       <h1>Blog Posts</h1>
-      <ul>
-        <li>
-          <a href="mermaid-launch.html">New Mermaid App Launched!</a>
-        </li>
-        <li>
-          <a href="clocks-launch.html">New Clocks App Launched!</a>
-        </li>
-        <li>
-          <a href="kanban-launch.html">New Kanban App Launched!</a>
-        </li>
-        <li>
-          <a href="notepad-launch.html">New Notepad App Launched!</a>
-        </li>
-        <li>
-          <a href="qrcode-launch.html">New QR Code Generator App Launched!</a>
-        </li>
-        <li>
-          <a href="calculator-launch.html">New Calculator App Launched!</a>
-        </li>
-      </ul>
+      <div class="blog-container" id="blog-container">
+        <!-- Blog cards will be inserted here by JavaScript -->
+      </div>
     </main>
     <app-footer></app-footer>
     <script src="../components/header.js"></script>
     <script src="../components/footer.js"></script>
+    <script src="../components/blog-card.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const blogContainer = document.getElementById("blog-container");
+
+        const blogPosts = [
+          {
+            title: "New Mermaid App Launched!",
+            date: "2024-07-03",
+            link: "mermaid-launch.html",
+          },
+          {
+            title: "New Clocks App Launched!",
+            date: "2024-07-02",
+            link: "clocks-launch.html",
+          },
+          {
+            title: "New Kanban App Launched!",
+            date: "2024-06-30",
+            link: "kanban-launch.html",
+          },
+          {
+            title: "New Notepad App Launched!",
+            date: "2024-06-28",
+            link: "notepad-launch.html",
+          },
+          {
+            title: "New QR Code Generator App Launched!",
+            date: "2024-06-27",
+            link: "qrcode-launch.html",
+          },
+          {
+            title: "New Calculator App Launched!",
+            date: "2024-06-26",
+            link: "calculator-launch.html",
+          },
+        ];
+
+        blogPosts.forEach((post) => {
+          const card = document.createElement("blog-card");
+          card.setAttribute("title", post.title);
+          card.setAttribute("date", post.date);
+          card.setAttribute("link", post.link);
+          blogContainer.appendChild(card);
+        });
+      });
+    </script>
   </body>
 </html>
