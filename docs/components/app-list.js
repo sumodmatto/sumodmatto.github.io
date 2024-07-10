@@ -1,6 +1,7 @@
 class AppList extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
+      <div class="app-list-container">
         <h1>App List</h1>
         <ul class="app-list">
           <li><a href="calculator.html">Calculator</a></li>
@@ -12,7 +13,8 @@ class AppList extends HTMLElement {
           <li><a href="html-renderer.html">HTML Renderer</a></li>
           <li><a href="click-the-circle-game.html">Click The Circle Game</a></li>
         </ul>
-      `;
+      </div>
+    `;
   }
 }
 

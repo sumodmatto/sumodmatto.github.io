@@ -1,10 +1,22 @@
+.app-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
 .app-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .app-list li {
-  margin: 10px 0;
+  flex: 1 1 calc(25% - 40px); /* Adjust the width to fit 4 items per row with spacing */
+  margin: 10px;
 }
 
 .app-list li a {
@@ -12,12 +24,33 @@
   color: #333;
   font-size: 18px;
   background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 4px;
-  display: inline-block;
-  transition: background-color 0.3s;
+  padding: 20px;
+  border-radius: 8px;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .app-list li a:hover {
   background-color: #ddd;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+  .app-list li {
+    flex: 1 1 calc(33.333% - 40px); /* Adjust to 3 items per row */
+  }
+}
+
+@media (max-width: 900px) {
+  .app-list li {
+    flex: 1 1 calc(50% - 40px); /* Adjust to 2 items per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .app-list li {
+    flex: 1 1 100%; /* Adjust to 1 item per row */
+  }
 }
