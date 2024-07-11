@@ -12,6 +12,7 @@ class AppList extends HTMLElement {
           <li><a href="mermaid.html">Mermaid Renderer</a></li>
           <li><a href="html-renderer.html">HTML Renderer</a></li>
           <li><a href="click-the-circle-game.html">Click The Circle Game</a></li>
+          <li><a href="password-generator.html">Password Generator</a></li>
         </ul>
       </div>
     `;
