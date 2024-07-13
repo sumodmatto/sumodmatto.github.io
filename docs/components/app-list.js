@@ -14,6 +14,7 @@ class AppList extends HTMLElement {
           <li><a href="click-the-circle-game.html">Click The Circle Game</a></li>
           <li><a href="password-generator.html">Password Generator</a></li>
           <li><a href="prompt-generator.html">Prompt Generator</a></li>
+          <li><a href="countdown-timer.html">Contdown Timer</a></li>
         </ul>
       </div>
     `;
