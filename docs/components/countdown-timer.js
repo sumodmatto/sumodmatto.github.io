@@ -72,37 +72,39 @@ class CountdownTimer extends HTMLElement {
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
-        text-align: left; /* Changed from center to left */
-        width: 40vw;
+        text-align: left;
+        width: 60vw;
+        max-width: 100%;
       }
-  
+
       .countdown-inputs {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Changed from center to flex-start */
+        align-items: flex-start;
         margin-bottom: 20px;
       }
-  
+
       .input-row {
         display: flex;
-        justify-content: flex-start; /* Changed from center to flex-start */
+        justify-content: flex-start;
         margin: 10px 0;
+        flex-wrap: wrap;
       }
-  
+
       .input-group {
         display: flex;
         flex-direction: column;
         margin: 0 10px;
       }
-  
+
       .input-group label {
         margin-bottom: 5px;
         font-weight: bold;
         font-size: 14px;
         color: #333;
-        text-align: left; /* Added */
+        text-align: left;
       }
-  
+
       .input-group input {
         padding: 10px;
         font-size: 16px;
@@ -111,27 +113,38 @@ class CountdownTimer extends HTMLElement {
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition: border-color 0.3s ease;
       }
-  
+
       .input-group input:focus {
         border-color: #4a90e2;
         outline: none;
       }
-  
+
       .countdown {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Changed from center to flex-start */
+        align-items: flex-start;
       }
-  
+
       .countdown div {
         margin: 10px;
         font-size: 24px;
         font-weight: bold;
       }
-  
+
       .countdown span {
         font-size: 28px;
         color: #4a90e2;
+      }
+
+      @media (max-width: 768px) {
+        .input-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .input-group {
+          margin: 10px 0;
+        }
       }
     `;
   }
