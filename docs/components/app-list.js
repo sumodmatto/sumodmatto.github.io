@@ -15,6 +15,7 @@ class AppList extends HTMLElement {
           <li><a href="password-generator.html">Password Generator</a></li>
           <li><a href="prompt-generator.html">Prompt Generator</a></li>
           <li><a href="countdown-timer.html">Contdown Timer</a></li>
+          <li><a href="emoji-selector.html">Emoji Selector</a></li>
         </ul>
       </div>
     `;
