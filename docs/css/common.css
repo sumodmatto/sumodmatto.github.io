@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* ヘッダーのスタイル */
@@ -38,6 +39,8 @@ main {
   min-height: 80vh;
   box-sizing: border-box;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 /* フッターのスタイル */
@@ -147,4 +150,34 @@ button:hover {
 
 notepad-app {
   width: 60%;
+}
+
+.background-container {
+  position: fixed; /* 背景画像を固定し、スクロールに合わせて動かないようにする */
+  top: 50%;
+  left: 50%;
+  width: 100vmin; /* 画面の縦横の短い方に合わせる */
+  height: 100vmin; /* 画面の縦横の短い方に合わせる */
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  overflow: hidden;
+  z-index: -1; /* コンテンツの背面に配置 */
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/spiral-pattern.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* 透明度を調整 */
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
