@@ -21,6 +21,7 @@ class AppList extends HTMLElement {
           <li><a href="artistic-line-drawer.html">Artistic Line Drawer</a></li>
           <li><a href="geometric-pattern-filler.html">Geometric Pattern Filler</a></li>
           <li><a href="l-system-tree.html">L System Tree</a></li>
+          <li><a href="archimedean-spiral-drawer.html">Archimedean Spiral Drawer</a></li>
         </ul>
       </div>
     `;
