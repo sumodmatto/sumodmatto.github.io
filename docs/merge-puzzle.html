@@ -9,13 +9,13 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <style>
-      /* ゲーム盤はCSS Gridで5×5 */
+      /* 基本スタイル（デスクトップ向け） */
       #game-board {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 5px;
       }
-      /* セル基本スタイル */
+
       .cell {
         border: 1px solid #dee2e6;
         display: flex;
@@ -27,10 +27,11 @@
         cursor: pointer;
         transition: background-color 0.3s, transform 0.3s;
       }
-      /* 落下アニメーション */
+
       .cell.drop {
         animation: drop 0.5s ease-out;
       }
+
       @keyframes drop {
         from {
           transform: translateY(-20px);
@@ -41,21 +42,21 @@
           opacity: 1;
         }
       }
-      /* クリック時のハイライト */
+
       .cell.active {
         transform: scale(1.1);
       }
-      /* マージ時の吸い込みアニメーション */
+
       .cell.merging-out {
         transition: transform 0.5s ease-in, opacity 0.5s ease-in;
       }
-      /* 右カラム知識部分のスタイル */
+
       #knowledge-list {
         background-color: #e9f7fc;
         padding: 1rem;
         border-radius: 0.25rem;
       }
-      /* HPゲージ表示 */
+
       #health-display {
         display: flex;
         align-items: center;
@@ -63,12 +64,15 @@
         font-size: 20px;
         font-weight: bold;
       }
+
       #health-display span.label {
         margin-right: 10px;
       }
+
       #hp-gauge {
         display: flex;
       }
+
       .hp-segment {
         width: 25px;
         height: 25px;
@@ -77,24 +81,23 @@
         background-color: #ddd;
         border-radius: 4px;
       }
+
       .hp-segment.active {
         background-color: #28a745;
       }
-      /* スコア表示 */
-      #score-display {
+
+      #score-display,
+      #high-score-display {
         text-align: center;
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 10px;
       }
-      /* High Score 表示 */
+
       #high-score-display {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
         margin-bottom: 20px;
       }
-      /* ゲームオーバーオーバーレイ */
+
       #game-over {
         position: fixed;
         top: 0;
@@ -109,6 +112,33 @@
         justify-content: center;
         align-items: center;
         z-index: 1000;
+      }
+
+      /* レスポンシブ対応：画面幅576px以下 */
+      @media (max-width: 576px) {
+        #game-board {
+          gap: 3px;
+          grid-template-columns: repeat(5, 1fr);
+        }
+        .cell {
+          height: 40px;
+          font-size: 18px;
+        }
+        #health-display {
+          font-size: 16px;
+        }
+        .hp-segment {
+          width: 20px;
+          height: 20px;
+          margin: 0 1px;
+        }
+        #score-display,
+        #high-score-display {
+          font-size: 16px;
+        }
+        #game-over {
+          font-size: 28px;
+        }
       }
     </style>
   </head>
@@ -169,60 +199,56 @@
         sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
         getColor: (num) => {
           const colorPalette = [
-            "#BAE1FF",
-            "#FFDFBA",
-            "#FFFFBA",
-            "#BAFFC9",
-            "#FFB3BA",
-            "#D3B3FF",
-            "#FFC9DE",
-            "#B3FFFC",
-            "#FFB3E6",
-            "#B3FFD9",
-            "#D9B3FF",
-            "#FFECB3",
-            "#B3FFB3",
-            "#FFB3D9",
-            "#B3D9FF",
-            "#E6FFB3",
-            "#FFCCD9",
-            "#CCFFBA",
-            "#BAFFD3",
-            "#D9FFB3",
+            '#BAE1FF',
+            '#FFDFBA',
+            '#FFFFBA',
+            '#BAFFC9',
+            '#FFB3BA',
+            '#D3B3FF',
+            '#FFC9DE',
+            '#B3FFFC',
+            '#FFB3E6',
+            '#B3FFD9',
+            '#D9B3FF',
+            '#FFECB3',
+            '#B3FFB3',
+            '#FFB3D9',
+            '#B3D9FF',
+            '#E6FFB3',
+            '#FFCCD9',
+            '#CCFFBA',
+            '#BAFFD3',
+            '#D9FFB3',
           ];
           return colorPalette[(num - 1) % colorPalette.length];
         },
       };
       // スコア表示更新
       function updateScoreDisplay(score) {
-        document.getElementById("score-display").textContent =
-          "Score: " + score;
+        document.getElementById('score-display').textContent = 'Score: ' + score;
       }
 
       // High Score 表示更新
       function updateHighScoreDisplay() {
-        const best = localStorage.getItem("bestScore") || 0;
-        document.getElementById("high-score-display").textContent =
-          "High Score: " + best;
+        const best = localStorage.getItem('bestScore') || 0;
+        document.getElementById('high-score-display').textContent = 'High Score: ' + best;
       }
 
       // HPゲージ更新：HPに合わせて各セグメントに active クラスを付与
       function updateHealthDisplay(health) {
-        const segments = document.querySelectorAll("#hp-gauge .hp-segment");
+        const segments = document.querySelectorAll('#hp-gauge .hp-segment');
         segments.forEach((seg, index) => {
           if (index < health) {
-            seg.classList.add("active");
+            seg.classList.add('active');
           } else {
-            seg.classList.remove("active");
+            seg.classList.remove('active');
           }
         });
       }
 
       // 初期盤面の安定性チェック：連結が3以上ならNG
       function isBoardStable(board, size) {
-        const visited = Array.from({ length: size }, () =>
-          Array(size).fill(false)
-        );
+        const visited = Array.from({ length: size }, () => Array(size).fill(false));
         function dfs(r, c, num) {
           const stack = [[r, c]];
           const group = [];
@@ -302,19 +328,17 @@
         },
         // セルDOMの初回生成と保持
         createBoard: function () {
-          const boardDiv = document.getElementById("game-board");
-          boardDiv.innerHTML = "";
+          const boardDiv = document.getElementById('game-board');
+          boardDiv.innerHTML = '';
           this.cellElements = [];
           for (let i = 0; i < this.size; i++) {
             this.cellElements[i] = [];
             for (let j = 0; j < this.size; j++) {
-              const cell = document.createElement("div");
-              cell.className = "cell drop";
+              const cell = document.createElement('div');
+              cell.className = 'cell drop';
               cell.dataset.row = i;
               cell.dataset.col = j;
-              cell.addEventListener("click", () =>
-                this.handleCellClick(i, j, cell)
-              );
+              cell.addEventListener('click', () => this.handleCellClick(i, j, cell));
               boardDiv.appendChild(cell);
               this.cellElements[i][j] = cell;
             }
@@ -326,13 +350,13 @@
             for (let j = 0; j < this.size; j++) {
               const cell = this.cellElements[i][j];
               const newValue = this.board[i][j];
-              cell.classList.remove("merging-out", "active");
+              cell.classList.remove('merging-out', 'active');
               if (cell.textContent != newValue) {
                 cell.textContent = newValue;
                 cell.style.backgroundColor = Utils.getColor(newValue);
-                cell.classList.remove("drop");
+                cell.classList.remove('drop');
                 void cell.offsetWidth;
-                cell.classList.add("drop");
+                cell.classList.add('drop');
               }
             }
           }
@@ -350,45 +374,38 @@
           }
           // クリックでセル値1増加
           this.board[row][col] += 1;
-          cellDiv.classList.add("active");
-          setTimeout(() => cellDiv.classList.remove("active"), 200);
+          cellDiv.classList.add('active');
+          setTimeout(() => cellDiv.classList.remove('active'), 200);
           this.updateBoard();
           setTimeout(() => this.processMergesSequentially(), 300);
         },
         gameOver: function () {
           // ゲーム終了前、最高スコアを更新
-          const best = localStorage.getItem("bestScore") || 0;
+          const best = localStorage.getItem('bestScore') || 0;
           if (this.score > best) {
-            localStorage.setItem("bestScore", this.score);
+            localStorage.setItem('bestScore', this.score);
           }
           updateHighScoreDisplay();
-          document.getElementById("game-over").style.display = "flex";
+          document.getElementById('game-over').style.display = 'flex';
           this.animating = true;
         },
         restart: function () {
-          document.getElementById("game-over").style.display = "none";
+          document.getElementById('game-over').style.display = 'none';
           this.animating = false;
           this.init();
         },
         // 順次マージ処理：クリックしたセルが含まれるグループを優先
         processMergesSequentially: async function () {
           // マージ処理中はゲーム盤全体のクリックを無効化
-          document.getElementById("game-board").style.pointerEvents = "none";
+          document.getElementById('game-board').style.pointerEvents = 'none';
           this.animating = true;
           while (true) {
             let mergeGroups = [];
-            const visited = Array.from({ length: this.size }, () =>
-              Array(this.size).fill(false)
-            );
+            const visited = Array.from({ length: this.size }, () => Array(this.size).fill(false));
             for (let i = 0; i < this.size; i++) {
               for (let j = 0; j < this.size; j++) {
                 if (!visited[i][j]) {
-                  const group = this.getConnectedGroup(
-                    i,
-                    j,
-                    this.board[i][j],
-                    visited
-                  );
+                  const group = this.getConnectedGroup(i, j, this.board[i][j], visited);
                   if (group.length >= 3) {
                     mergeGroups.push(group);
                   }
@@ -399,10 +416,7 @@
             // 優先順位：クリックしたセルを含むグループを優先
             let selectedGroup = mergeGroups.find((group) =>
               group.some(
-                ([r, c]) =>
-                  this.lastClick &&
-                  r === this.lastClick.row &&
-                  c === this.lastClick.col
+                ([r, c]) => this.lastClick && r === this.lastClick.row && c === this.lastClick.col
               )
             );
             if (!selectedGroup) {
@@ -430,24 +444,14 @@
             group.slice(1).forEach(([r, c]) => {
               const cell = this.cellElements[r][c];
               const cellRect = cell.getBoundingClientRect();
-              const dx =
-                repRect.left +
-                repRect.width / 2 -
-                (cellRect.left + cellRect.width / 2);
-              const dy =
-                repRect.top +
-                repRect.height / 2 -
-                (cellRect.top + cellRect.height / 2);
-              cell.style.transition =
-                "transform 0.5s ease-in, opacity 0.5s ease-in";
+              const dx = repRect.left + repRect.width / 2 - (cellRect.left + cellRect.width / 2);
+              const dy = repRect.top + repRect.height / 2 - (cellRect.top + cellRect.height / 2);
+              cell.style.transition = 'transform 0.5s ease-in, opacity 0.5s ease-in';
               cell.style.transform = `translate(${dx}px, ${dy}px) scale(0)`;
             });
             await Utils.sleep(500);
             // マージ処理：グループ全体の合計値を計算してスコアに加算
-            let groupSum = group.reduce(
-              (sum, [r, c]) => sum + this.board[r][c],
-              0
-            );
+            let groupSum = group.reduce((sum, [r, c]) => sum + this.board[r][c], 0);
             this.score += groupSum;
             updateScoreDisplay(this.score);
 
@@ -464,8 +468,8 @@
             this.fillEmptyCells();
             this.cellElements.forEach((row) => {
               row.forEach((cell) => {
-                cell.style.transition = "";
-                cell.style.transform = "";
+                cell.style.transition = '';
+                cell.style.transform = '';
               });
             });
             this.updateBoard();
@@ -473,7 +477,7 @@
           }
           this.animating = false;
           // マージ処理終了後、クリック可能にする
-          document.getElementById("game-board").style.pointerEvents = "auto";
+          document.getElementById('game-board').style.pointerEvents = 'auto';
         },
         // DFSで連結グループを取得
         getConnectedGroup: function (row, col, number, visited) {
@@ -573,16 +577,16 @@
       };
 
       // リスタートボタンのイベント
-      document.getElementById("restart-btn").addEventListener("click", () => {
+      document.getElementById('restart-btn').addEventListener('click', () => {
         Game.restart();
       });
       Game.restart = function () {
-        document.getElementById("game-over").style.display = "none";
+        document.getElementById('game-over').style.display = 'none';
         this.animating = false;
         this.init();
       };
 
-      window.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener('DOMContentLoaded', () => {
         Game.init();
       });
     </script>
